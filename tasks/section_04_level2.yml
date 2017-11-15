@@ -224,7 +224,11 @@
       - section4.2.2.5
 
   - name: 4.2.4 Ensure permissions on all logfiles are configured (Scored)
-    shell: chmod -R g-wx,o-rwx /var/log/*
+    file:
+      path: /var/log
+      mode: "g-wx,o-rwx"
+      state: directory
+      recurse: True
     tags:
       - section4
       - section4.2
