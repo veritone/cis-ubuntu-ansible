@@ -159,6 +159,19 @@
       - section2.2
       - section2.2.7
 
+  - name: 2.2.7 Ensure NFS is not enabled (Scored)
+    service:
+      name: "{{ item }}"
+      state: stopped
+      enabled: no
+    with_items:
+      - nfs-server
+    when: nfs_installed.rc == 0
+    tags:
+      - section2
+      - section2.2
+      - section2.2.7
+
   - command: dpkg-query -s rpcbind
     register: rpcbind_installed
     failed_when: False
@@ -169,15 +182,14 @@
       - section2.2
       - section2.2.7
 
-  - name: 2.2.7 Ensure NFS and RPC are not enabled (Scored)
+  - name: 2.2.7 Ensure RPC is not enabled (Scored)
     service:
       name: "{{ item }}"
       state: stopped
       enabled: no
     with_items:
       - rpcbind
-      - nfs-server
-    when: rpcbind_installed.rc == 0 or nfs_installed.rc == 0
+    when: rpcbind_installed.rc == 0
     tags:
       - section2
       - section2.2
@@ -235,12 +247,33 @@
       - section2.2
       - section2.2.10
 
-  - name: 2.2.10 Ensure HTTP server is not enabled (Scored)
+  - name: 2.2.10 Ensure Apache HTTP server is not enabled (Scored)
     service:
       name: apache2
       state: stopped
       enabled: no
     when: apache2_installed.rc == 0
+    tags:
+      - section2
+      - section2.2
+      - section2.2.10
+
+  - command: dpkg-query -s nginx
+    register: nginx_installed
+    failed_when: False 
+    ignore_errors: True
+    changed_when: False
+    tags:
+      - section2
+      - section2.2
+      - section2.2.10
+
+  - name: 2.2.10 Ensure Nginx HTTP server is not enabled (Scored)
+    service:
+      name: nginx
+      state: stopped
+      enabled: no
+    when: nginx_installed.rc == 0
     tags:
       - section2
       - section2.2
