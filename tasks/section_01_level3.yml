@@ -16,7 +16,7 @@
       name: "Check files integrity"
       minute: 0
       hour: 5
-      job: "/usr/sbin/aide --check"
+      job: "/usr/bin/aide --check"
     when: use_aide == True
     tags:
       - section1
