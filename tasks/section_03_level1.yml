@@ -14,7 +14,11 @@
     sysctl:
       name: net.ipv4.conf.all.send_redirects
       value: 0
+      sysctl_set: True
       state: present
+    with_items:
+      - net.ipv4.conf.all.send_redirects
+      - net.ipv4.conf.default.send_redirects
     tags:
       - section3
       - section3.1
