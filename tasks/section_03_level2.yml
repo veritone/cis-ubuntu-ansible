@@ -2,9 +2,13 @@
 
   - name: 3.2.1 Ensure source routed packets are not accepted (Scored)
     sysctl:
-      name: net.ipv4.conf.all.accept_source_route
+      name: "{{ item }}"
       value: 0
+      sysctl_set: True
       state: present
+    with_items:
+      - net.ipv4.conf.all.accept_source_route
+      - net.ipv4.conf.default.accept_source_route
     tags:
       - section3
       - section3.2
@@ -12,9 +16,13 @@
 
   - name: 3.2.2 Ensure ICMP redirects are not accepted (Scored)
     sysctl:
-      name: net.ipv4.conf.all.accept_redirects
+      name: "{{ item }}"
       value: 0
+      sysctl_set: True
       state: present
+    with_items:
+      - net.ipv4.conf.all.accept_redirects
+      - net.ipv4.conf.default.accept_redirects
     tags:
       - section3
       - section3.2
@@ -22,9 +30,13 @@
 
   - name: 3.2.3 Ensure secure ICMP redirects are not accepted (Scored)
     sysctl:
-      name: net.ipv4.conf.all.secure_redirects
+      name: "{{ item }}"
       value: 0
+      sysctl_set: True
       state: present
+    with_items:
+      - net.ipv4.conf.all.secure_redirects
+      - net.ipv4.conf.default.secure_redirects
     tags:
       - section3
       - section3.2
@@ -32,9 +44,13 @@
 
   - name: 3.2.4 Ensure suspicious packets are logged (Scored)
     sysctl:
-      name: net.ipv4.conf.all.log_martians
+      name: "{{ item }}"
       value: 1
+      sysctl_set: True
       state: present
+    with_items:
+      - net.ipv4.conf.all.log_martians
+      - net.ipv4.conf.default.log_martians
     tags:
       - section3
       - section3.2
@@ -62,9 +78,13 @@
 
   - name: 3.2.7 Ensure Reverse Path Filtering is enabled (Scored)
     sysctl:
-      name: net.ipv4.conf.all.rp_filter
+      name: "{{ item }}"
       value: 1
+      sysctl_set: True
       state: present
+    with_items:
+      - net.ipv4.conf.all.rp_filter
+      - net.ipv4.conf.default.rp_filter
     tags:
       - section3
       - section3.2
