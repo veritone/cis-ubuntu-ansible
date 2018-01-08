@@ -32,7 +32,7 @@
       regexp: '{{item.expression}}'
       line: '{{item.value}}'
     with_items:
-      - { name: '/etc/chrony/chrony.conf', expression: '^server', value: 'server 10.190.14.12' }
+      - { name: '/etc/chrony/chrony.conf', expression: '^server', value: 'server 192.168.0.1' }
       - { name: '/etc/chrony/chrony.conf', expression: '^pool', value: '' }
     when: ntp_package  == "chrony"
     notify: restart chrony
