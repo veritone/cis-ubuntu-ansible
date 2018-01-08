@@ -50,6 +50,7 @@
       name: /etc/pam.d/common-password
       regexp: '^password\s+sufficient\s+pam_unix.so'
       line: 'password sufficient pam_unix.so remember=5'
+      create: True
     tags:
       - section5
       - section5.3
