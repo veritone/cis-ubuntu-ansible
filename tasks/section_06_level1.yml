@@ -52,9 +52,9 @@
   - name: 6.1.5 Ensure permissions on /etc/gshadow are configured (Scored)
     file:
       path: /etc/gshadow
-      mode: 0640
+      mode: 'o-rwx,g-rw'
       owner: root
-      group: root
+      group: shadow
     tags:
       - section6
       - section6.1
