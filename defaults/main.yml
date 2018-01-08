@@ -7,7 +7,7 @@ partitioning: True
 use_aide: True
 
 # Section 01 Level 4
-set_bootloader_password: false
+set_bootloader_password: True
 grub_superuser: root
 # Grub Bootloader PBKDF2 Password (use grub-mkpasswd-pbkdf2 to generate): "password"
 root_password_grub: grub.pbkdf2.sha512.10000.2EDB88EB8D897897A67D45961EFACF9878E3280CC9FCE3BD0035D0F789409BC698831ED38349DF008FC9B1FCF56B26997BB802ED0299B0480744DD45C8658F18.516ABD49F2E70BF3EE21D02B5F6FBFBDC47C056B4CC8FEF2AB83E5F0997C1B00963E11A2B83533D892B3D64FDA2A065AF966D92F029402CB5E3BFD3776FE3D0C 
@@ -52,8 +52,8 @@ enable_tcp_syncookies: True
 disable_ipv6: True
 
 # Section 03 Level 4
-enable_hosts_allow: False
-enable_hosts_deny: False
+enable_hosts_allow: True
+enable_hosts_deny: True
 
 # Section 03 Level 6
 activate_iptables: True
@@ -81,11 +81,11 @@ restrict_core_dumps: True
 
 # Section 05
 # Section 05 Level 2
-permit_root_login: without-password
-sshd_allow_users: sshuser
-sshd_allow_groups: sshusersallow
-sshd_deny_users: sshdenied
-sshd_deny_groups: sshusersdeny
+permit_root_login: no
+sshd_allow_users: ubuntu
+sshd_allow_groups: 
+sshd_deny_users: 
+sshd_deny_groups: 
 
 # Section 06
 
