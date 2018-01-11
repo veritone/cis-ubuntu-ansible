@@ -67,7 +67,7 @@ disable_wifi: True
 # Section 04 Level 1
 enable_auditd: True
 # Set auditd logs file size in /var/log/auditd
-max_log_file_auditd: 200
+max_log_file_auditd: 32
 
 # Section 4 Level 2
 set_rsyslog_remote: True
