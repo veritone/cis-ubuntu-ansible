@@ -34,6 +34,7 @@
     apt:
       name: telnet
       state: absent
+      purge: True
     tags:
       - section2
       - section2.3

@@ -73,8 +73,9 @@
   - name: 5.4.1.4 Ensure inactive password lock is 30 days or less (Scored)
     lineinfile:
       dest: /etc/login.defs
-      line: 'INACTIVE=35'
+      line: 'INACTIVE=30'
       state: present
+      create: True
     when: lock_inactive_rc.rc == 1
     tags:
       - section5

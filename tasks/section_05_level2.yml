@@ -83,7 +83,9 @@
     lineinfile:
       dest: /etc/ssh/sshd_config
       regexp: '^PermitRootLogin'
-      line: 'PermitRootLogin {{ permit_root_login }}'
+      line: 'PermitRootLogin no'
+      backup: True
+      validate: '/usr/sbin/sshd -t -f %s'
     notify: restart ssh
     tags:
       - section5

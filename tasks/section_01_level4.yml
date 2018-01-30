@@ -5,7 +5,7 @@
       dest: /boot/grub/grub.cfg
       owner: root
       group: root
-      mode: 0600
+      mode: "og-rwx"
     tags:
       - section1
       - section1.4

@@ -53,6 +53,7 @@
     service:
         name: auditd
         enabled: yes
+        state: reloaded
     when: enable_auditd == True
     tags:
       - section4
