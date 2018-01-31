@@ -1,0 +1,58 @@
+# This is the playbook I used to work around the Ansible bug shown in
+# modern_playbook.yml. It is the one that I did 90% of the hardening testing
+# with.
+---
+
+- hosts: test
+  become: True
+
+  pre_tasks:
+
+    - name: run apt-get update
+      apt:
+        update_cache: True
+
+    - name: install python 2 for old school Ansible modules
+      raw: sudo bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qy python-minimal)"
+
+    - name: give the ubuntu user a password so we don't break SSH
+      user:
+        name: ubuntu
+        update_password: always
+        password: "$6$9ZAG1bxgpq8Z.GO/$MA1JHXB3hOhk.RW2WzRtg0taaUr.YqW6DJKoIc0G1q8.DnSuF/9WTbuL0CZ/fFqqgGTb5NLkOYFlanqCU7T5r1"
+
+    - name: sshd_allow_users fact
+      set_fact:
+        sshd_allow_users: ubuntu
+
+    - name: sshd_allow_groups fact
+      set_fact:
+        sshd_allow_groups:
+
+    - name: sshd_deny_users fact
+      set_fact:
+        sshd_deny_users:
+
+    - name: sshd_deny_groups fact
+      set_fact:
+        sshd_deny_groups:
+
+    - name: set_bootloader_password fact
+      set_fact:
+        set_bootloader_password: False
+
+    - name: set enable_hosts_allow fact
+      set_fact:
+        enable_hosts_allow: True 
+
+    - name: set enable_hosts_deny fact
+      set_fact:
+        enable_hosts_deny: True 
+
+    - name: set firewall_policy_drop fact
+      set_fact:
+        firewall_policy_drop: False
+
+  roles:
+    - cis
+

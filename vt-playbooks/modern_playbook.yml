@@ -1,0 +1,35 @@
+# This was the playbook I hopedc to use for hardening.
+# Howevewr, there is a many months old bug in Ansible
+# where variables are not being passed correctly via include_role.
+# https://github.com/ansible/ansible/issues/18217
+---
+
+- hosts: test
+  become: True
+
+  tasks:
+
+    - name: run apt-get update
+      apt:
+        update_cache: True
+
+    - name: install python 2 for old school Ansible modules
+      raw: sudo bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qy python-minimal)"
+
+    - name: give the ubuntu user a password so we don't break SSH
+      user:
+        name: ubuntu
+        update_password: always
+        password: "$6$9ZAG1bxgpq8Z.GO/$MA1JHXB3hOhk.RW2WzRtg0taaUr.YqW6DJKoIc0G1q8.DnSuF/9WTbuL0CZ/fFqqgGTb5NLkOYFlanqCU7T5r1"
+
+    - include_role:
+        name: cis
+      vars:
+        sshd_allow_users: ubuntu
+        sshd_allow_groups:
+        sshd_deny_users:
+        sshd_deny_groups:
+        set_bootloader_password: False
+        enable_hosts_allow: True
+        enable_hosts_deny: True
+
