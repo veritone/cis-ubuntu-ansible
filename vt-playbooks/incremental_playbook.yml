@@ -1,0 +1,96 @@
+# This is another playbook I used for testing, It allowed me to test one
+# section at a time when I was trying to figure out what was completely
+# breaking the hardening
+---
+
+- hosts: test
+  become: True
+  vars_files:
+    - cis-ubuntu-ansible/defaults/main.yml
+    - cis-ubuntu-ansible/vars/main.yml
+
+  tasks:
+
+    - name: run apt-get update
+      apt:
+        update_cache: True
+      tags: prep
+
+    - name: install python 2 for old school Ansible modules
+      raw: sudo bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qy python-minimal)"
+      tags: prep
+
+    - name: give the ubuntu user a password so we don't break SSH
+      user:
+        name: ubuntu
+        update_password: always
+        password: "$6$9ZAG1bxgpq8Z.GO/$MA1JHXB3hOhk.RW2WzRtg0taaUr.YqW6DJKoIc0G1q8.DnSuF/9WTbuL0CZ/fFqqgGTb5NLkOYFlanqCU7T5r1"
+      tags: prep
+
+    - name: sshd_allow_users fact
+      set_fact:
+        sshd_allow_users: ubuntu
+
+    - name: sshd_allow_groups fact
+      set_fact:
+        sshd_allow_groups:
+
+    - name: sshd_deny_users fact
+      set_fact:
+        sshd_deny_users:
+
+    - name: sshd_deny_groups fact
+      set_fact:
+        sshd_deny_groups:
+
+    - name: set_bootloader_password fact
+      set_fact:
+        set_bootloader_password: False
+
+    - name: enable_hosts_allow fact
+      set_fact:
+        enable_hosts_allow: True 
+
+    - name: enable_hosts_deny fact
+      set_fact:
+        enable_hosts_deny: True 
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_01.yml
+      tags: one
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_02.yml
+      tags: two
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_03.yml
+      tags: three
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_04.yml
+      tags: four
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_05.yml
+      tags: five
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_05_level1.yml
+      tags: "51"
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_05_level2.yml
+      tags: "52"
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_05_level3.yml
+      tags: "53"
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_05_level4.yml
+      tags: "54"
+      
+    - include_tasks: cis-ubuntu-ansible/tasks/section_05_level5.yml
+      tags: "55"
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_05_level6.yml
+      tags: "56"
+
+    - include_tasks: cis-ubuntu-ansible/tasks/section_06.yml
+      tags: six
+
+
+  handlers:
+    - include: cis-ubuntu-ansible/handlers/main.yml
