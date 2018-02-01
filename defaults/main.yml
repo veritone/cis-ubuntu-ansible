@@ -19,7 +19,7 @@ root_password: $6$22JQUvbd$n9xjZ9mM4todclTzHHUyIlmlxrlXIXFS4H4baITVFqGn.hzo6o.m4
 enable_aslr: True
 
 # Section 01 Level 6
-enable_selinux: True
+enable_selinux: False
 # Set this flag to use AppArmor. It is useful to disable it when the system does not support the kernel module.
 use_apparmor: True
 selinux_apparmor: apparmor
