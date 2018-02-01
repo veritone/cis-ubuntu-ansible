@@ -7,7 +7,6 @@
   become: True
 
   pre_tasks:
-
     - name: run apt-get update
       apt:
         update_cache: True
@@ -54,5 +53,5 @@
         firewall_policy_drop: False
 
   roles:
-    - cis
+    - ../roles/cis
 
