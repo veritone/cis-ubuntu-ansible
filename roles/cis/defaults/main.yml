@@ -82,7 +82,7 @@ restrict_core_dumps: True
 # Section 05
 # Section 05 Level 2
 permit_root_login: no
-sshd_allow_users: ubuntu
+sshd_allow_users:
 sshd_allow_groups: 
 sshd_deny_users: 
 sshd_deny_groups: 
