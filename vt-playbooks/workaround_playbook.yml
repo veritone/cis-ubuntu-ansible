@@ -3,7 +3,7 @@
 # with.
 ---
 
-- hosts: test
+- hosts: localhost
   become: True
 
   pre_tasks:
