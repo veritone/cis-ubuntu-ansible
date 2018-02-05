@@ -92,16 +92,17 @@
       - section5.2
       - section5.2.8
 
-  - name: 5.2.9 Ensure SSH PermitEmptyPasswords is disabled (Scored)
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: '^PermitEmptyPasswords'
-      line: 'PermitEmptyPasswords no'
-    notify: restart ssh
-    tags:
-      - section5
-      - section5.2
-      - section5.2.9
+        # RIck - second audit that was preventing Packer access
+        #- name: 5.2.9 Ensure SSH PermitEmptyPasswords is disabled (Scored)
+        #lineinfile:
+        #dest: /etc/ssh/sshd_config
+        #regexp: '^PermitEmptyPasswords'
+        #line: 'PermitEmptyPasswords no'
+        #notify: restart ssh
+        #tags:
+        #- section5
+        #- section5.2
+        #- section5.2.9
 
   - name: 5.2.10 Ensure SSH PermitUserEnvironment is disabled (Scored)
     lineinfile:
