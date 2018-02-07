@@ -42,11 +42,11 @@
 
     - name: set enable_hosts_allow fact
       set_fact:
-        enable_hosts_allow: True 
+        enable_hosts_allow: False
 
     - name: set enable_hosts_deny fact
       set_fact:
-        enable_hosts_deny: True 
+        enable_hosts_deny: False
 
     - name: set firewall_policy_drop fact
       set_fact:

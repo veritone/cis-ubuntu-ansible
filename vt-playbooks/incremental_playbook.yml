@@ -47,9 +47,9 @@
       set_fact:
         set_bootloader_password: False
 
-    - name: enable_hosts_allow fact
+    - name: set enable_hosts_allow fact
       set_fact:
-        enable_hosts_allow: True 
+        enable_hosts_allow: False
 
     - name: enable_hosts_deny fact
       set_fact:
