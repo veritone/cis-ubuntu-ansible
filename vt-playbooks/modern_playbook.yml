@@ -30,6 +30,6 @@
         sshd_deny_users:
         sshd_deny_groups:
         set_bootloader_password: False
-        enable_hosts_allow: True
-        enable_hosts_deny: True
+        enable_hosts_allow: False
+        enable_hosts_deny: False
 
