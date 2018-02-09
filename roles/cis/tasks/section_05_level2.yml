@@ -68,16 +68,17 @@
       - section5.2
       - section5.2.6
 
-  - name: 5.2.7 Ensure SSH HostbasedAuthentication is disabled (Scored)
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: '^HostbasedAuthentication'
-      line: 'HostbasedAuthentication no'
-    notify: restart ssh
-    tags:
-      - section5
-      - section5.2
-      - section5.2.7
+        # Rick - Another possible Packer blocker
+        #- name: 5.2.7 Ensure SSH HostbasedAuthentication is disabled (Scored)
+        #lineinfile:
+        #dest: /etc/ssh/sshd_config
+        #regexp: '^HostbasedAuthentication'
+        #line: 'HostbasedAuthentication no'
+        #notify: restart ssh
+        #tags:
+        #- section5
+        #- section5.2
+        #- section5.2.7
 
   - name: 5.2.8 Ensure SSH root login is disabled (Scored)
     lineinfile:
@@ -92,7 +93,7 @@
       - section5.2
       - section5.2.8
 
-        # RIck - second audit that was preventing Packer access
+        # Rick - second audit that was preventing Packer access
         #- name: 5.2.9 Ensure SSH PermitEmptyPasswords is disabled (Scored)
         #lineinfile:
         #dest: /etc/ssh/sshd_config
