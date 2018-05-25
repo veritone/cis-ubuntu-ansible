@@ -1,0 +1,15 @@
+---
+
+- name: test hardening
+  hosts: test-monthly
+  become: True
+  
+  pre_tasks:
+
+    - name: set the sshd_allow_users fact
+      set_fact:
+        sshd_allow_users: vagrant
+
+  roles:
+    - ../roles/cis
+
