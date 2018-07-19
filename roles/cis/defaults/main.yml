@@ -58,7 +58,7 @@ enable_hosts_deny: False
 # Section 03 Level 6
 activate_iptables: False
 iptables_rules_file: /etc/iptables/rules.v4
-firewall_policy_drop: True
+firewall_policy_drop: False
 
 # Section 03 Level 7
 disable_wifi: True
@@ -82,7 +82,7 @@ restrict_core_dumps: True
 # Section 05
 # Section 05 Level 2
 permit_root_login: no
-sshd_allow_users:
+sshd_allow_users: ubuntu
 sshd_allow_groups: 
 sshd_deny_users: 
 sshd_deny_groups: 
@@ -101,3 +101,10 @@ modify_user_homes: True
 # Section 06 Level 5
 # Default ntp server for when none-already exists.
 ntp_server: 192.168.112.1
+
+### Veritone Control Variables
+
+# These affect Packer builds
+vt_control_5_2_7: False
+vt_control_5_2_9: False
+vt_control_5_2_14: True

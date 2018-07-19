@@ -24,12 +24,4 @@
 
     - include_role:
         name: cis
-      vars:
-        sshd_allow_users: ubuntu
-        sshd_allow_groups:
-        sshd_deny_users:
-        sshd_deny_groups:
-        set_bootloader_password: False
-        enable_hosts_allow: False
-        enable_hosts_deny: False
 

@@ -20,38 +20,6 @@
         update_password: always
         password: "$6$9ZAG1bxgpq8Z.GO/$MA1JHXB3hOhk.RW2WzRtg0taaUr.YqW6DJKoIc0G1q8.DnSuF/9WTbuL0CZ/fFqqgGTb5NLkOYFlanqCU7T5r1"
 
-    - name: sshd_allow_users fact
-      set_fact:
-        sshd_allow_users: ubuntu
-
-    - name: sshd_allow_groups fact
-      set_fact:
-        sshd_allow_groups:
-
-    - name: sshd_deny_users fact
-      set_fact:
-        sshd_deny_users:
-
-    - name: sshd_deny_groups fact
-      set_fact:
-        sshd_deny_groups:
-
-    - name: set_bootloader_password fact
-      set_fact:
-        set_bootloader_password: False
-
-    - name: set enable_hosts_allow fact
-      set_fact:
-        enable_hosts_allow: False
-
-    - name: set enable_hosts_deny fact
-      set_fact:
-        enable_hosts_deny: False
-
-    - name: set firewall_policy_drop fact
-      set_fact:
-        firewall_policy_drop: False
-
   roles:
     - ../roles/cis
 
